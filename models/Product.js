@@ -35,3 +35,5 @@ class Product {
       return Product.#products.length > 0 ? Product.#products[Product.#products.length - 1] : undefined;
     }
   }
+
+  module.exports = Product;
