@@ -39,7 +39,7 @@ const getNewProductView = (_request, response) => {
   };
 const getProductView = (request, response) => {
     const productName = request.params.name;
-    const product = Product.findByName(productName);
+    const product = prod.findByName(productName);
 
     if (!product) {
         return response.status(STATUS_CODE.NOT_FOUND);
@@ -49,7 +49,7 @@ const getProductView = (request, response) => {
         headTitle: `Product - ${product.name}`,
         path: "/products",
         menuLinks: MENU_LINKS,
-        activeLinkPath: "/products",
+        activeLinkPath: `/products/${productName}`,
         product: product,
     });
 };
