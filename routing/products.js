@@ -12,4 +12,8 @@ router.post("/add", pc.addNewProduct);
 
 router.get("/new", pc.getNewProductView);
 
+router.get("/:name", pc.getProductView);
+
+router.delete("/:name", pc.deleteProduct);
+
 module.exports = router;

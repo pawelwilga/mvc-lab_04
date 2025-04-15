@@ -37,10 +37,34 @@ const getNewProductView = (_request, response) => {
       newestProduct: prod.getLast(),
     });
   };
+const getProductView = (request, response) => {
+    const productName = request.params.name;
+    const product = Product.findByName(productName);
+
+    if (!product) {
+        return response.status(STATUS_CODE.NOT_FOUND);
+    }
+
+    response.render("product.ejs", {
+        headTitle: `Product - ${product.name}`,
+        path: "/products",
+        menuLinks: MENU_LINKS,
+        activeLinkPath: "/products",
+        product: product,
+    });
+};
+
+const deleteProduct = (request, response) => {
+    const productName = request.params.name;
+    prod.deleteByName(productName);
+    response.status(STATUS_CODE.OK).json({ success: true });
+};
 
 module.exports = {
     getProductsView,
     getAddProductView,
     addNewProduct,
-    getNewProductView
+    getNewProductView,
+    getProductView,
+    deleteProduct
 };
